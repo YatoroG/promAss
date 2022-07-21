@@ -1,0 +1,15 @@
+C:\Repos\promAss\bin\Debug\net6.0\promAss.exe
+C:\Repos\promAss\bin\Debug\net6.0\promAss.deps.json
+C:\Repos\promAss\bin\Debug\net6.0\promAss.runtimeconfig.json
+C:\Repos\promAss\bin\Debug\net6.0\promAss.dll
+C:\Repos\promAss\bin\Debug\net6.0\promAss.pdb
+C:\Repos\promAss\obj\Debug\net6.0\promAss.csproj.AssemblyReference.cache
+C:\Repos\promAss\obj\Debug\net6.0\promAss.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repos\promAss\obj\Debug\net6.0\promAss.AssemblyInfoInputs.cache
+C:\Repos\promAss\obj\Debug\net6.0\promAss.AssemblyInfo.cs
+C:\Repos\promAss\obj\Debug\net6.0\promAss.csproj.CoreCompileInputs.cache
+C:\Repos\promAss\obj\Debug\net6.0\promAss.dll
+C:\Repos\promAss\obj\Debug\net6.0\refint\promAss.dll
+C:\Repos\promAss\obj\Debug\net6.0\promAss.pdb
+C:\Repos\promAss\obj\Debug\net6.0\promAss.genruntimeconfig.cache
+C:\Repos\promAss\obj\Debug\net6.0\ref\promAss.dll
