@@ -1,27 +1,30 @@
 using System;
 using System.IO.Ports;
 
-class SerialConnection : IConnectable
+namespace PromAss
 {
-    private SerialPort port;
-
-    public void Connect()
+    class SerialConnection : IConnectable
     {
+        private SerialPort port;
 
-    }
+        public void Connect()
+        {
 
-    public void Disconnect()
-    {
+        }
 
-    }
+        public void Disconnect()
+        {
 
-    public object ReadData()
-    {
-        return null;
-    }
+        }
 
-    public void SendMessage(object message)
-    {
+        public object ReadData()
+        {
+            return null;
+        }
 
+        public void SendMessage(object message)
+        {
+
+        }
     }
 }
