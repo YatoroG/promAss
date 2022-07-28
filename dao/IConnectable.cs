@@ -5,16 +5,25 @@
 /// </summary>
 interface IConnectable
 {
-    // подключение
-    void Connect(string SerialPortName); 
+    /// <summary>
+    /// Осуществляет подключение объекта к устройству
+    /// </summary>
+    void Connect(); 
 
-    // отключение
-    void Disconnect(string SerialPortName); 
+    /// <summary>
+    /// Осуществляет отключение 
+    /// </summary>
+    void Disconnect(); 
 
-    // чтение
-    string ReadData(object obj);
+    /// <summary>
+    /// Прием данных
+    /// </summary>
+    /// <returns>Возвращает прочитанную строку или массив байт. При ошибке возвращает null</returns>
+    object ReadData();
 
-    // передача сообщения
-    void SendMessage(string message);
-    
+    /// <summary>
+    /// Отправка данных
+    /// </summary>
+    /// <param name="message">Массив байт или строка для отправки</param>
+    void SendMessage(object message);
 }
