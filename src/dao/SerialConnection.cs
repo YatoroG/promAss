@@ -56,7 +56,7 @@ public class SerialConnection : IConnectable
             Console.WriteLine("Message is empty");
             return;
         }
-
+        
         port.WriteLine(String.Format("{0}: {1}", name, message));
     }
 }

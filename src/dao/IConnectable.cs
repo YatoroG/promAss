@@ -8,7 +8,7 @@ interface IConnectable
     /// <summary>
     /// Осуществляет подключение объекта к устройству
     /// </summary>
-    void Connect(object); 
+    void Connect(object name); 
 
     /// <summary>
     /// Осуществляет отключение 
