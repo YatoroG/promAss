@@ -5,7 +5,8 @@ public class SerialConnection : IConnectable
 {
     private SerialPort port;
     public string name { get; private set;} = "";
-
+    public delegate void EventHandler(string message);
+    public event EventHandler? onRead;
     public void Connect(object com_port)
     {
         try
@@ -41,6 +42,7 @@ public class SerialConnection : IConnectable
         try
         {
             message = port.ReadLine();
+            onRead?.Invoke(message);
             return (String)message;
         }
         catch
