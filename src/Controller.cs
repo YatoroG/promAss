@@ -4,6 +4,10 @@
 /// </summary>
 class Controller
 {
+    public void SendToProm(string message)
+    {
+        return null;
+    }
     private Dictionary<string, IConnectable> connections = new Dictionary<string, IConnectable>();
     //SerialConnection serial_conn = new SerialConnection();
     public void CreateConnection()
@@ -18,7 +22,7 @@ class Controller
 
     public void Start()
     {
-        //serial_conn.onRead += а что делать?
+        //serial_conn.onRead += SendToProm;
         throw new NotImplementedException();
     }
 }
