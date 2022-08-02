@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/promAss.csproj",
+                "${workspaceFolder}/src/promAss.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/promAss.csproj",
+                "${workspaceFolder}/src/promAss.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/promAss.csproj"
+                "${workspaceFolder}/src/promAss.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
