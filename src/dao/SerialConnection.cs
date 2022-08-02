@@ -4,14 +4,14 @@ using System.IO.Ports;
 public class SerialConnection : IConnectable
 {
     private SerialPort port;
-    public string name { get; private set;} = "";
+    public string name { get; private set; } = "";
     public delegate void EventHandler(string message);
     public event EventHandler? onRead;
     public void Connect(object com_port)
     {
         try
         {
-            name = (string) com_port;
+            name = (string)com_port;
             port.PortName = name;
             port.Open();
             Console.WriteLine("Connection is opened");
@@ -53,12 +53,12 @@ public class SerialConnection : IConnectable
 
     public void SendMessage(object message)
     {
-        if (string.IsNullOrEmpty((string) message))
+        if (string.IsNullOrEmpty((string)message))
         {
             Console.WriteLine("Message is empty");
             return;
         }
-        
+
         port.WriteLine(String.Format("{0}: {1}", name, message));
     }
 }

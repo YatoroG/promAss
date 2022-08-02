@@ -6,7 +6,7 @@ class Controller
 {
     public void SendToProm(string message)
     {
-        return null;
+        return;
     }
     private Dictionary<string, IConnectable> connections = new Dictionary<string, IConnectable>();
     //SerialConnection serial_conn = new SerialConnection();
