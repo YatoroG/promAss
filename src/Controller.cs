@@ -23,6 +23,7 @@ class Controller
     public void Start()
     {
         //serial_conn.onRead += SendToProm;
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        PrometheusConnection.Start();
     }
 }
