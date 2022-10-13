@@ -3,7 +3,7 @@ using System.IO.Ports;
 
 public class SerialConnection : IConnectable
 {
-    private SerialPort port;
+    private SerialPort port = new SerialPort();
     public string name { get; private set; } = "";
     public delegate void EventHandler(string message);
     public event EventHandler? onRead;
@@ -16,9 +16,9 @@ public class SerialConnection : IConnectable
             port.Open();
             Console.WriteLine("Connection is opened");
         }
-        catch
+        catch (Exception e)
         {
-            Console.WriteLine("An error occurred");
+            Console.WriteLine(e);
         }
     }
 
