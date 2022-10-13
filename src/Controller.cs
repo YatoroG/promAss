@@ -9,10 +9,12 @@ class Controller
         return;
     }
     private Dictionary<string, IConnectable> connections = new Dictionary<string, IConnectable>();
-    //SerialConnection serial_conn = new SerialConnection();
+    SerialConnection serial_conn = new SerialConnection();
     public void CreateConnection()
     {
-        throw new NotImplementedException();
+        serial_conn.Connect("COM14");
+        serial_conn.SendMessage("huyi");
+        //throw new NotImplementedException();
     }
 
     public void GetConnection()
@@ -24,6 +26,7 @@ class Controller
     {
         //serial_conn.onRead += SendToProm;
         //throw new NotImplementedException();
-        PrometheusConnection.Start();
+        CreateConnection();
+        //PrometheusConnection.Start();
     }
 }
