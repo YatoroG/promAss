@@ -1,20 +1,30 @@
-
+using System.Threading;
+using Prometheus;
 /// <summary>
 /// Основной класс 
 /// </summary>
 class Controller
 {
+    private Dictionary<string, IConnectable> connections = new Dictionary<string, IConnectable>();
+    SerialConnection sender = new SerialConnection();
+    SerialConnection reciever = new SerialConnection();
+    private static readonly Gauge gauge = Metrics.CreateGauge("sixty_nine","Noice");
     public void SendToProm(string message)
     {
-        return;
+        message = message.Substring(7);
+        gauge.Inc(Convert.ToInt32(message));
     }
-    private Dictionary<string, IConnectable> connections = new Dictionary<string, IConnectable>();
-    SerialConnection serial_conn = new SerialConnection();
     public void CreateConnection()
     {
-        serial_conn.Connect("COM14");
-        serial_conn.SendMessage("huyi");
-        //throw new NotImplementedException();
+        try
+        {
+            sender.Connect("COM14");
+            reciever.Connect("COM88");            
+        }
+        catch
+        {
+            Console.WriteLine("Cannot create connection");
+        }
     }
 
     public void GetConnection()
@@ -24,9 +34,16 @@ class Controller
 
     public void Start()
     {
-        //serial_conn.onRead += SendToProm;
-        //throw new NotImplementedException();
         CreateConnection();
-        //PrometheusConnection.Start();
+        PrometheusConnection.Start();
+
+        while(true)
+        {
+            sender.SendMessage("69");
+            reciever.onRead += SendToProm;
+            reciever.ReadData();
+            Thread.Sleep(TimeSpan.FromSeconds(10));
+        }
+
     }
 }
