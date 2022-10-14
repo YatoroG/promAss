@@ -35,7 +35,7 @@ class Controller
         //     Console.WriteLine("Cannot create connection");
         // }
 
-        IConnectable sc = new SerialConnection();        // создали
+        SerialConnection sc = new SerialConnection();        // создали
         if (sc.Connect((string) com_port))               // если подключение успешно
         {
             sc.onRead += SendToProm;                     // подписали обработчик
