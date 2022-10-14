@@ -6,44 +6,62 @@ using Prometheus;
 class Controller
 {
     private Dictionary<string, IConnectable> connections = new Dictionary<string, IConnectable>();
-    SerialConnection sender = new SerialConnection();
-    SerialConnection reciever = new SerialConnection();
-    private static readonly Gauge gauge = Metrics.CreateGauge("sixty_nine","Noice");
+    // SerialConnection sender = new SerialConnection(); 
+    // SerialConnection reciever = new SerialConnection(); 
+
+    /*  15.10.22 00:19 RA.Permyakov
+        За все, что связанно с прометеем отвечает PrometheusConnection
+    */
+    // private static readonly Gauge gauge = Metrics.CreateGauge("sixty_nine","Noice");  За все, что связанно с прометеем отвечает PrometheusConnection
     public void SendToProm(string message)
     {
-        message = message.Substring(7);
-        gauge.Inc(Convert.ToInt32(message));
+        // message = message.Substring(7); пока просто инкрементируем счетчик
+        PrometheusConnection.gauge.Inc();
     }
-    public void CreateConnection()
+    public bool CreateConnection(string com_port)
     {
-        try
+        /*  15.10.22 00:14 RA.Permyakov
+            Отлов исключений здесь не нужен. Смотри внимательнее код. У нас в
+            функции sender.Connect(...); уже ловится исключение. Здесь его уже никогда не будет
+        */
+
+        // try
+        // {
+        //     sender.Connect("COM14");
+        //     reciever.Connect("COM88");            
+        // }
+        // catch
+        // {
+        //     Console.WriteLine("Cannot create connection");
+        // }
+
+        IConnectable sc = new SerialConnection();        // создали
+        if (sc.Connect((string) com_port))               // если подключение успешно
         {
-            sender.Connect("COM14");
-            reciever.Connect("COM88");            
+            sc.onRead += SendToProm;                     // подписали обработчик
+            connections.Add(com_port, sc);               // положили в словарь
+            return true;
         }
-        catch
-        {
-            Console.WriteLine("Cannot create connection");
-        }
+        return false;
     }
 
-    public void GetConnection()
+    public IConnectable GetConnection(string name_connection)
     {
-        throw new NotImplementedException();
+        return connections[name_connection];
     }
 
     public void Start()
     {
-        CreateConnection();
+        if (!CreateConnection("COM14")) return; 
+        
         PrometheusConnection.Start();
 
         while(true)
         {
-            sender.SendMessage("69");
-            reciever.onRead += SendToProm;
-            reciever.ReadData();
-            Thread.Sleep(TimeSpan.FromSeconds(10));
+            // sender.SendMessage("69");        по шишью - отправка сообщения из hterm должна приводить к появлению метрики
+            // reciever.onRead += SendToProm;   один раз только это должно происходить
+            IConnectable tmp = GetConnection("COM14");   
+            tmp.ReadData();  
         }
-
     }
 }

@@ -5,6 +5,7 @@ using Prometheus;
 public static class PrometheusConnection
 {
     public static MetricServer server = new MetricServer(hostname: "localhost", port: 1234);
+    public static readonly Gauge gauge = Metrics.CreateGauge("sixty_nine","Noice");
     //private static readonly Counter TickTock = Metrics.CreateCounter("sampleapp_ticks_total", "Just keeps on ticking");
 
     public static void Start()
