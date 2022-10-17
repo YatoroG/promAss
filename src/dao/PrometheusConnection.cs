@@ -5,16 +5,17 @@ using Prometheus;
 public static class PrometheusConnection
 {
     public static MetricServer server = new MetricServer(hostname: "localhost", port: 1234);
-    private static readonly Counter TickTock = Metrics.CreateCounter("sampleapp_ticks_total", "Just keeps on ticking");
+    public static readonly Counter gauge = Metrics.CreateCounter("sixty_nine","Noice");
+    //private static readonly Counter TickTock = Metrics.CreateCounter("sampleapp_ticks_total", "Just keeps on ticking");
 
     public static void Start()
     {
         server.Start();
 
-        while (true)
-        {
-            TickTock.Inc();
-            Thread.Sleep(TimeSpan.FromSeconds(1));
-        }
+        // while (true)
+        // {
+        //     TickTock.Inc();
+        //     Thread.Sleep(TimeSpan.FromSeconds(1));
+        // }
     }
 }

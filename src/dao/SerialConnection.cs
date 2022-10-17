@@ -3,11 +3,11 @@ using System.IO.Ports;
 
 public class SerialConnection : IConnectable
 {
-    private SerialPort port;
+    private SerialPort port = new SerialPort();
     public string name { get; private set; } = "";
     public delegate void EventHandler(string message);
     public event EventHandler? onRead;
-    public void Connect(object com_port)
+    public bool Connect(object com_port)
     {
         try
         {
@@ -15,10 +15,12 @@ public class SerialConnection : IConnectable
             port.PortName = name;
             port.Open();
             Console.WriteLine("Connection is opened");
+            return true;
         }
-        catch
+        catch (Exception e)
         {
-            Console.WriteLine("An error occurred");
+            Console.WriteLine(e);
+            return false;
         }
     }
 
